@@ -21,69 +21,53 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 24px 15px;
-      position: relative;
-      background-color: #020617;
+      padding: 25px 15px;
+      background: radial-gradient(circle at top, #0f2744 0%, #030712 100%);
+      background-attachment: fixed;
       overflow-x: hidden;
-    }
-
-    /* فيديو الخلفية بكامل الشاشة */
-    .bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    /* طبقة شفافة خفيفة لإبراز حركة الفيديو مع قراءة النصوص */
-    .video-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(2, 6, 23, 0.45);
-      z-index: -1;
     }
 
     .card-container {
       width: 100%;
       max-width: 430px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(56, 189, 248, 0.28);
       border-radius: 28px;
-      padding: 30px 20px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(14, 165, 233, 0.2);
+      padding: 32px 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(14, 165, 233, 0.15);
       text-align: center;
-      z-index: 1;
     }
 
-    .logo-box {
-      width: 86px;
-      height: 86px;
-      margin: 0 auto 16px;
+    /* إطار اللوجو الدائري المتحرك للفيديو */
+    .video-logo-box {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 18px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(2, 132, 199, 0.1));
-      border: 2px solid rgba(56, 189, 248, 0.5);
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #38bdf8;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.45), 0 10px 25px rgba(0, 0, 0, 0.6);
+      background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #38bdf8;
-      font-size: 38px;
-      box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+    }
+
+    .avatar-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .company-title {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
       color: #ffffff;
-      line-height: 1.4;
+      line-height: 1.45;
       margin-bottom: 12px;
       letter-spacing: -0.3px;
     }
@@ -279,23 +263,20 @@
 </head>
 <body>
 
-  <!-- فيديو الخلفية مع دعم كلا التسميتين -->
-  <video id="bgVideo" class="bg-video" autoplay loop muted playsinline webkit-playsinline preload="auto">
-    <source src="bg-video.mp4.mp4" type="video/mp4">
-    <source src="bg-video.mp4" type="video/mp4">
-  </video>
-
-  <div class="video-overlay"></div>
-
   <div class="card-container">
-    <div class="logo-box">
-      <i class="fa-solid fa-snowflake"></i>
+    
+    <!-- اللوجو المتحرك بالفيديو -->
+    <div class="video-logo-box">
+      <video id="logoVideo" class="avatar-video" autoplay loop muted playsinline webkit-playsinline preload="auto">
+        <source src="bg-video.mp4.mp4" type="video/mp4">
+        <source src="bg-video.mp4" type="video/mp4">
+      </video>
     </div>
 
     <!-- العنوان الجديد -->
     <h1 class="company-title">شركة تنظيف وتعقيم دكتات التكييف المركزي</h1>
 
-    <!-- شريط المدن ونطاق الخدمة -->
+    <!-- شريط نطاق المدن -->
     <div class="locations-badge">
       <i class="fa-solid fa-location-dot"></i>
       <span>جدة _ مكة المكرمة _ الرياض _ الدمام</span>
@@ -390,9 +371,9 @@
   <div id="toast" class="toast">تم نسخ الرقم بنجاح</div>
 
   <script>
-    // تشغيل الفيديو تلقائياً وبشكل صامت
+    // تشغيل فيديو اللوجو تلقائياً وبشكل صامت
     window.addEventListener('DOMContentLoaded', function() {
-      const v = document.getElementById('bgVideo');
+      const v = document.getElementById('logoVideo');
       if (v) {
         v.muted = true;
         v.play().catch(function(e) {
