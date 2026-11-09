@@ -40,7 +40,7 @@
       text-align: center;
     }
 
-    /* بنر الفيديو العلوي العريض */
+    /* بنر الفيديو العلوي */
     .video-banner-wrap {
       width: 100%;
       height: 210px;
@@ -57,7 +57,6 @@
       display: block;
     }
 
-    /* تدرج ظلي خفيف لدمج أسفل الفيديو مع البطاقة */
     .banner-overlay {
       position: absolute;
       top: 0;
@@ -93,30 +92,6 @@
       border-radius: 20px;
       border: 1px solid rgba(56, 189, 248, 0.3);
       margin-bottom: 22px;
-    }
-
-    .save-contact-btn {
-      width: 100%;
-      background: linear-gradient(135deg, #0ea5e9, #0284c7);
-      color: #ffffff;
-      border: none;
-      padding: 14px 18px;
-      border-radius: 16px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 20px rgba(14, 165, 233, 0.45);
-      transition: all 0.25s ease;
-      margin-bottom: 22px;
-    }
-
-    .save-contact-btn:active {
-      transform: scale(0.98);
-      filter: brightness(0.9);
     }
 
     .section-title {
@@ -274,7 +249,6 @@
 
   <div class="card-container">
     
-    <!-- فيديو عريض في قمة الكارت بالكامل -->
     <div class="video-banner-wrap">
       <video id="bannerVideo" class="banner-video" autoplay loop muted playsinline webkit-playsinline preload="auto">
         <source src="bg-video.mp4.mp4" type="video/mp4">
@@ -284,19 +258,12 @@
     </div>
 
     <div class="card-body">
-      <!-- الاسم الجديد -->
       <h1 class="company-title">شركة تنظيف وتعقيم دكتات التكييف المركزي</h1>
 
-      <!-- نطاق المدن -->
       <div class="locations-badge">
         <i class="fa-solid fa-location-dot"></i>
         <span>جدة _ مكة المكرمة _ الرياض _ الدمام</span>
       </div>
-
-      <button class="save-contact-btn" onclick="saveContact()">
-        <i class="fa-solid fa-user-plus"></i>
-        <span>حفظ جهة الاتصال في الهاتف</span>
-      </button>
 
       <div class="section-title">اتصال & واتساب</div>
 
@@ -384,7 +351,6 @@
   <div id="toast" class="toast">تم نسخ الرقم بنجاح</div>
 
   <script>
-    // تشغيل الفيديو التلقائي
     window.addEventListener('DOMContentLoaded', function() {
       const v = document.getElementById('bannerVideo');
       if (v) {
@@ -401,19 +367,6 @@
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 2000);
       });
-    }
-
-    function saveContact() {
-      const vcardData = `BEGIN:VCARD\nVERSION:3.0\nN:شركة تنظيف وتعقيم دكتات التكييف المركزي;;;;\nFN:شركة تنظيف وتعقيم دكتات التكييف المركزي\nORG:شركة تنظيف وتعقيم دكتات التكييف المركزي\nTITLE:جدة _ مكة المكرمة _ الرياض _ الدمام\nTEL;TYPE=CELL,VOICE,PREF:+966500400745\nTEL;TYPE=WORK,VOICE:+966573375040\nURL:https://madaamek.com/services/ac-duct-cleaning\nNOTE:Eng Youssef: +966500400745\\nEng Mahmoud: +966573375040\\nInstagram: @technical__ksa\\nTikTok: @technical_ksa\\nWebsite: https://madaamek.com/services/ac-duct-cleaning\nEND:VCARD`;
-      
-      const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'AC_Cleaning_Contact.vcf');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
   </script>
 </body>
